@@ -1,0 +1,504 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Question ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+    --pink: #ff5c83;
+    --dark: #33232d;
+    --light: #fff5f7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(135deg, #fff0f4, #ffe0e9, #fff7f9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: var(--dark);
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 540px;
+    background: rgba(255,255,255,0.88);
+    border-radius: 28px;
+    padding: 45px 30px;
+    text-align: center;
+    box-shadow: 0 15px 55px rgba(150, 55, 85, 0.12);
+    position: relative;
+    overflow: hidden;
+}
+
+.heart {
+    font-size: 55px;
+    margin-bottom: 18px;
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.13); }
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 7vw, 43px);
+    line-height: 1.2;
+    margin-bottom: 17px;
+}
+
+.subtitle {
+    color: #806b76;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    min-height: 65px;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 15px 30px;
+    border-radius: 50px;
+    transition: 0.25s ease;
+}
+
+.yes-btn {
+    background: var(--pink);
+    color: white;
+    box-shadow: 0 7px 20px rgba(255, 92, 131, 0.25);
+}
+
+.yes-btn:hover {
+    transform: translateY(-3px);
+    background: #ed416c;
+}
+
+.no-btn {
+    background: #eee9ec;
+    color: #6c5963;
+    position: relative;
+}
+
+.no-btn:hover {
+    background: #e5dce1;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Date selection */
+
+.date-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 13px;
+    margin: 25px 0;
+}
+
+.date-option {
+    background: #fff7f9;
+    border: 2px solid #f6e4e9;
+    border-radius: 17px;
+    padding: 20px 10px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.date-option:hover {
+    transform: translateY(-3px);
+    border-color: var(--pink);
+}
+
+.date-option.selected {
+    background: #ffe6ed;
+    border-color: var(--pink);
+    box-shadow: 0 5px 15px rgba(255, 92, 131, 0.12);
+}
+
+.date-option .emoji {
+    font-size: 31px;
+    display: block;
+    margin-bottom: 9px;
+}
+
+.date-option strong {
+    font-size: 14px;
+}
+
+.date-option small {
+    display: block;
+    color: #927e88;
+    margin-top: 5px;
+    font-size: 11px;
+}
+
+.continue-btn {
+    width: 100%;
+    background: var(--pink);
+    color: white;
+    margin-top: 12px;
+}
+
+.continue-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.back-btn {
+    background: transparent;
+    color: #907985;
+    margin-top: 12px;
+}
+
+.confirmation {
+    padding: 15px 0;
+}
+
+.confirmation .big-heart {
+    font-size: 65px;
+    margin-bottom: 15px;
+}
+
+.confirmation p {
+    color: #806b76;
+    line-height: 1.8;
+    margin: 15px 0;
+}
+
+.choice-display {
+    background: #fff0f4;
+    border-radius: 15px;
+    padding: 18px;
+    margin: 20px 0;
+    font-weight: 700;
+    color: #d63e68;
+}
+
+.name {
+    color: var(--pink);
+}
+
+.footer {
+    font-size: 11px;
+    color: #b39ca7;
+    margin-top: 30px;
+}
+
+.decline {
+    padding: 30px 0;
+}
+
+.decline p {
+    color: #806b76;
+    line-height: 1.8;
+}
+
+@media(max-width: 420px) {
+    .container {
+        padding: 35px 20px;
+    }
+
+    .date-options {
+        gap: 9px;
+    }
+
+    .date-option {
+        padding: 17px 7px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- FIRST SCREEN -->
+    <section id="firstScreen">
+
+        <div class="heart">💌</div>
+
+        <!-- CHANGE THE NAME BELOW -->
+        <h1>Hey <span class="name">Beautiful</span> ❤️</h1>
+
+        <p class="subtitle">
+            I have a little question for you...
+            <br><br>
+            I've been thinking that it would be really nice
+            to spend some quality time together.
+            <br><br>
+            So, would you go on a first date with me? 🥹
+        </p>
+
+        <div class="buttons">
+            <button class="yes-btn" onclick="sayYes()">
+                YES! ❤️
+            </button>
+
+            <button class="no-btn" id="noButton"
+                    onclick="sayNo()">
+                NO 🙈
+            </button>
+        </div>
+
+        <div class="footer">
+            Made with a little courage and a lot of hope ❤️
+        </div>
+    </section>
+
+
+    <!-- DATE SELECTION SCREEN -->
+    <section id="dateScreen" class="hidden">
+
+        <div class="heart">🥰</div>
+
+        <h1>That's wonderful!</h1>
+
+        <p class="subtitle">
+            Now comes the fun part...
+            <br>
+            What kind of first date would you enjoy?
+            <br>
+            You get to choose!
+        </p>
+
+        <div class="date-options">
+
+            <div class="date-option" onclick="selectDate(this, 'Coffee Date ☕')">
+                <span class="emoji">☕</span>
+                <strong>Coffee Date</strong>
+                <small>Good conversations</small>
+            </div>
+
+            <div class="date-option" onclick="selectDate(this, 'Dinner Date 🍽️')">
+                <span class="emoji">🍽️</span>
+                <strong>Dinner Date</strong>
+                <small>Food and good vibes</small>
+            </div>
+
+            <div class="date-option" onclick="selectDate(this, 'Movie Date 🎬')">
+                <span class="emoji">🎬</span>
+                <strong>Movie Date</strong>
+                <small>A movie together</small>
+            </div>
+
+            <div class="date-option" onclick="selectDate(this, 'Picnic Date 🧺')">
+                <span class="emoji">🧺</span>
+                <strong>Picnic Date</strong>
+                <small>Fresh air and fun</small>
+            </div>
+
+            <div class="date-option" onclick="selectDate(this, 'Adventure Date 🌍')">
+                <span class="emoji">🌍</span>
+                <strong>Adventure Date</strong>
+                <small>Let's explore somewhere</small>
+            </div>
+
+            <div class="date-option" onclick="selectDate(this, 'Surprise Me 🎁')">
+                <span class="emoji">🎁</span>
+                <strong>Surprise Me</strong>
+                <small>I'll leave it to you</small>
+            </div>
+
+        </div>
+
+        <button class="continue-btn" id="continueBtn"
+                onclick="finishDate()" disabled>
+            Confirm My Choice ❤️
+        </button>
+
+        <button class="back-btn" onclick="goBack()">
+            ← Go back
+        </button>
+
+    </section>
+
+
+    <!-- FINAL SCREEN -->
+    <section id="finalScreen" class="hidden">
+
+        <div class="confirmation">
+
+            <div class="big-heart">💖</div>
+
+            <h1>It's a Date!</h1>
+
+            <p>
+                I'm really looking forward to spending
+                some quality time together.
+            </p>
+
+            <div class="choice-display" id="chosenDate">
+                Your selected date
+            </div>
+
+            <p>
+                Now all we need is to agree on the day
+                and make it happen. 😊
+            </p>
+
+            <button class="continue-btn" onclick="copyChoice()">
+                Copy My Date Choice 💌
+            </button>
+
+            <p id="copyMessage" style="font-size:12px;"></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- NO THANKS SCREEN -->
+    <section id="noScreen" class="hidden decline">
+
+        <div class="heart">🌷</div>
+
+        <h1>No worries!</h1>
+
+        <p>
+            Thank you for being honest.
+            No pressure at all. Wishing you a lovely day! ❤️
+        </p>
+
+        <button class="back-btn" onclick="goBack()">
+            ← Back
+        </button>
+
+    </section>
+
+</div>
+
+
+<script>
+
+let selectedDate = "";
+let noAttempts = 0;
+
+const noButton = document.getElementById("noButton");
+
+function showScreen(screenId) {
+
+    document.querySelectorAll(".container > section")
+        .forEach(section => section.classList.add("hidden"));
+
+    document.getElementById(screenId)
+        .classList.remove("hidden");
+}
+
+
+// Playful moving NO button.
+// After three moves, it stays still and can be selected.
+
+function moveNoButton() {
+
+    if (noAttempts >= 3) return;
+
+    noAttempts++;
+
+    const maxX = Math.min(window.innerWidth - 160, 260);
+    const maxY = Math.min(window.innerHeight - 100, 300);
+
+    const x = Math.random() * maxX - maxX / 2;
+    const y = Math.random() * maxY - maxY / 2;
+
+    noButton.style.transform =
+        `translate(${x}px, ${y}px)`;
+}
+
+noButton.addEventListener("mouseenter", moveNoButton);
+
+noButton.addEventListener("touchstart", function() {
+    if (noAttempts < 3) {
+        moveNoButton();
+    }
+}, {passive: true});
+
+
+function sayYes() {
+    showScreen("dateScreen");
+}
+
+function sayNo() {
+    showScreen("noScreen");
+}
+
+function goBack() {
+    showScreen("firstScreen");
+}
+
+
+function selectDate(element, choice) {
+
+    document.querySelectorAll(".date-option")
+        .forEach(option => option.classList.remove("selected"));
+
+    element.classList.add("selected");
+
+    selectedDate = choice;
+
+    document.getElementById("continueBtn").disabled = false;
+}
+
+
+function finishDate() {
+
+    if (!selectedDate) return;
+
+    document.getElementById("chosenDate").textContent =
+        selectedDate;
+
+    showScreen("finalScreen");
+}
+
+
+function copyChoice() {
+
+    const message =
+        "I'd love to go on a date with you! ❤️ My choice is: " +
+        selectedDate +
+        ". Let's agree on a day! 😊";
+
+    navigator.clipboard.writeText(message)
+        .then(() => {
+            document.getElementById("copyMessage")
+                .textContent = "Copied! Send him your choice ❤️";
+        })
+        .catch(() => {
+            document.getElementById("copyMessage")
+                .textContent = message;
+        });
+}
+
+</script>
+
+</body>
+</html>
